@@ -34,13 +34,16 @@ const FormField = <T extends FieldValues>({
       name={name}
       render={({ field }) => (
         <FormItem className="space-y-2">
-          <FormLabel className="text-sm font-medium text-cyan-100">{label}</FormLabel>
+          <FormLabel className="text-sm font-medium text-cyan-100">
+            {label}
+          </FormLabel>
           <FormControl>
-            <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-xl blur-sm group-hover:blur-md transition-all duration-300" />
+            <div className="relative">
               <Input
-                className="relative w-full px-4 py-3 bg-slate-900/50 border border-blue-500/20 rounded-xl focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500 transition-all duration-200 placeholder:text-slate-400"
-                type={type === "password" && !showPassword ? "password" : type}
+                className="w-full px-4 py-3 bg-slate-900/50 border border-blue-500/20 rounded-xl focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500 transition-all duration-200 placeholder:text-slate-400"
+                type={
+                  type === "password" && !showPassword ? "password" : "text"
+                }
                 placeholder={placeholder}
                 {...field}
               />
@@ -49,7 +52,7 @@ const FormField = <T extends FieldValues>({
                   type="button"
                   variant="ghost"
                   size="icon"
-                  className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-cyan-300 transition-colors"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-cyan-300 transition-colors z-10"
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? (
