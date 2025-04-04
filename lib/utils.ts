@@ -43,8 +43,15 @@ export const getTechLogos = async (techArray: string[]) => {
   return results;
 };
 
-export const getRandomInterviewCover = (): LucideIcon => {
+export const getRandomInterviewCover = (
+  returnComponent: boolean = true
+): LucideIcon | string => {
   const randomIndex = Math.floor(Math.random() * interviewCovers.length);
   const iconName = interviewCovers[randomIndex];
-  return Icons[iconName as keyof typeof Icons] as LucideIcon;
+
+  if (returnComponent) {
+    return Icons[iconName as keyof typeof Icons] as LucideIcon;
+  } else {
+    return iconName;
+  }
 };

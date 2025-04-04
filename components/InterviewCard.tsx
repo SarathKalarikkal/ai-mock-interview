@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import Link from "next/link";
 import { PlayIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 import { Calendar, Star } from "lucide-react";
+import * as Icons from "lucide-react";
 
 import { Button } from "./ui/button";
 import DisplayTechIcons from "./DisplayTechIcons";
@@ -17,6 +18,7 @@ const InterviewCard = async ({
   type,
   techstack,
   createdAt,
+  coverImage,
 }: InterviewCardProps) => {
   const feedback =
     userId && interviewId
@@ -58,8 +60,26 @@ const InterviewCard = async ({
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-cyan-500/20 to-purple-500/20 rounded-full blur-xl opacity-70 transition-all duration-300 cover-image-glow"></div>
             <div className="relative rounded-full size-[90px] border-2 border-cyan-500/20 transition-all duration-300 cover-image-border flex items-center justify-center">
               {(() => {
-                const Icon = getRandomInterviewCover();
-                return <Icon className="size-8 text-cyan-400" />;
+                // Default to Code2 if no icon is specified
+                const iconName = coverImage || "Code2";
+
+                // Use a switch statement to render the appropriate icon
+                switch (iconName) {
+                  case "Briefcase":
+                    return <Icons.Briefcase className="size-8 text-cyan-400" />;
+                  case "GraduationCap":
+                    return (
+                      <Icons.GraduationCap className="size-8 text-cyan-400" />
+                    );
+                  case "Code2":
+                    return <Icons.Code2 className="size-8 text-cyan-400" />;
+                  case "Brain":
+                    return <Icons.Brain className="size-8 text-cyan-400" />;
+                  case "Lightbulb":
+                    return <Icons.Lightbulb className="size-8 text-cyan-400" />;
+                  default:
+                    return <Icons.Code2 className="size-8 text-cyan-400" />;
+                }
               })()}
             </div>
           </div>

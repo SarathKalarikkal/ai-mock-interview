@@ -172,16 +172,23 @@ const Agent = ({
   const handleCall = async () => {
     try {
       console.log("Starting call...");
+      console.log("Type:", type);
+      console.log("User ID:", userId);
+      console.log("User Name:", userName);
       setCallStatus(CallStatus.CONNECTING);
 
       if (type === "generate") {
+        console.log("Starting interview generation workflow...");
+        console.log("Workflow ID:", process.env.NEXT_PUBLIC_VAPI_WORKFLOW_ID);
         await vapi.start(process.env.NEXT_PUBLIC_VAPI_WORKFLOW_ID!, {
           variableValues: {
             username: userName,
             userid: userId,
           },
         });
+        console.log("Interview generation workflow started successfully");
       } else {
+        console.log("Starting interview with questions:", questions);
         let formattedQuestions = "";
         if (questions) {
           formattedQuestions = questions
